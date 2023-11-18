@@ -26,9 +26,10 @@ nav ul li a {
 	    }
 	    
 	    .logo-image {
+        background-color: #fff;
         width: 200px; /* Adjust the width as needed */
         height: auto; /* Maintain the aspect ratio */
-        border: 1px solid #fff; /* Add a border if desired */
+        border: 1px solid #8E6354; /* Add a border if desired */
     }
 
 /* Apply a background image, set its size, and center it */
