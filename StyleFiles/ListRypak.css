@@ -1,0 +1,67 @@
+
+        .profile-container {
+            display: flex;
+            align-items: center;
+            border: 2px solid black;
+        }
+/* Style the navigation menu */
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline-block;
+    background-color: #333;
+    margin-right: 20px;
+    text-align: center;
+    padding: 10px 0;
+    background-color: #333;
+    border-radius: 5px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+	    }
+	    
+	    .logo-image {
+        width: 200px; /* Adjust the width as needed */
+        height: auto; /* Maintain the aspect ratio */
+        border: 1px solid #333; /* Add a border if desired */
+    }
+
+/* Apply a background image, set its size, and center it */
+body {
+    background-image: url('Profile_image/khunphanduaepaostar.gif'); /* Replace 'background.gif' with your actual file path */
+    background-size: cover;
+    background-position: center;
+    color: #333;
+    font-family: Arial, sans-serif;
+/* ... (rest of the styles remain the same) */
+   text-align: center;
+	width: 500px; 
+}   
+        
+        .profile-image {
+            width: 100px; /* Adjust the size as needed */
+            border-radius: 40%;
+            margin-right: 20px;
+        }
+
+.frequency-image {
+            width: 100px; /* Adjust the size as needed */
+            border-radius: 20%;
+            margin-right: 15px;
+}
+        
+        .profile-name {
+            font-size: 24px;
+            color: Blue;
+        }
+        .အလဲင်ႏ {
+	    background: black;
+            font-size: 24px;
+            color: Red;
+        }
+  
