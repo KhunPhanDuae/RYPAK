@@ -41,7 +41,8 @@ body {
     font-family: Arial, sans-serif;
 /* ... (rest of the styles remain the same) */
    text-align: center;
-	width: 500px; 
+   width: 500px; 
+  margin: 20px auto 0 auto;	
 }   
         
         .profile-image {
