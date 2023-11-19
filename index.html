@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <h<!DOCTYPE html>
-<html lang="en">
+<html lang="blk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +19,19 @@
             <li><a href="List_of_rypak_team_member">List RyPak</a></li>
         </ul>
     </nav>
+     <div id="loading-container">
+        <div id="loading-spinner"></div>
+        <div id="loading-text">အုံပွေါးအိဉ်တာနဲစ်လဲင်းဟဝ်တဆင်ႏဩ!</div>
+    </div>
 
+
+<script>
+        // Simulate loading delay
+        setTimeout(function() {
+            document.getElementById('loading-container').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        }, 2000); // Adjust the delay time as needed
+</script>
     <main>
 <img src="KhunPhanDuae.jpg" width="-266" height="200" alt="ခွန်ဖန်ဒွဲ့နမ်းပွုံႏ">
 
