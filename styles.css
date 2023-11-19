@@ -76,3 +76,38 @@ footer {
     color: #fff;
   }
   
+#loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #loading-spinner {
+            border: 8px solid #007BFF;
+            border-top: 8px solid transparent;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #loading-text {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        #content {
+            display: none; /* Initially hide the content */
+        }
+a:hover {
+            text-decoration: underline;
+                                  }
