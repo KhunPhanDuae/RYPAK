@@ -26,6 +26,19 @@
     </head>
 
 <body>
+	     <div id="loading-container">
+        <div id="loading-spinner"></div>
+        <div id="loading-text">အုံပွေါးအိဉ်တာနဲစ်လဲင်းဟဝ်တဆင်ႏဩ!</div>
+    </div>
+
+
+<script>
+        // Simulate loading delay
+        setTimeout(function() {
+            document.getElementById('loading-container').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        }, 2000); // Adjust the delay time as needed
+</script>
     <main>
 <!-- Example with an image before the listing title -->
 <div class="listing">
