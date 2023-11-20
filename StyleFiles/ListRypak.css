@@ -121,3 +121,11 @@ footer {
 a:hover {
             text-decoration: underline;
 	   }
+a {
+            color: #007BFF;
+            text-decoration: none;
+            padding: 10px;
+            background-color: #fff;
+            color: #333;
+            border-radius: 5px;
+	}
