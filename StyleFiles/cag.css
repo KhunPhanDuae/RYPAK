@@ -93,3 +93,12 @@ footer {
             color: green;
             border-radius: 5px;
     }
+
+#Gopage {
+            color: #8E6354;
+            text-decoration: none;
+            padding: 10px;
+             background-color: #8E6354;
+            color: #fff;
+            border-radius: 5px;
+}
