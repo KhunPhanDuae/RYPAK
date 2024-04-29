@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="blk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>စစ်ပညာ</title>
+   <style>
+    body {
+    font-family: 'Arial', sans-serif;
+    margin: 0px auto 0 auto;	
+    padding: 0;
+    background-color: #FFA07A;
+}
+    img {
+    width: 100px;
+    border-radius: 8%;
+   box-shadow: 0px 0px 15px rgba(178, 105, 85, 2.1);
+    }
+    nav {
+    text-align: center;
+    }
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline-block;
+    background-color: none;
+    margin-right: 20px;
+    padding: 10px;
+    border-radius: 5px;
+   
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    
+}
+.profile-container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #f0f0f0;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.tagline {
+    color: #777;
+}
+
+.profile-section {
+    margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 1.1);
+padding: 10px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+a:hover {
+    text-decoration: underline;
+       }
+   </style>
+</head>
+<body>
+
+    <div class="profile-container">
+        <h1 style="text-align: center;">ခွန်ဖန်ဒွဲ့</h1>
+        <p class="tagline" style="text-align: center;">Web Developer | Creative Enthusiast</p>
+
+        <a style="color: #FF5733;" href="profile-khunphanduae"><section class="profile-section">
+            <h2> About KhunPhanDuae </h2>
+            <p>ခွန်ဖန်ဒွဲ့ယိုနဝ်ꩻပအိုဝ်ႏကိုထွာ ဘာႏသာႏငဝ်းငွါထင်ႏထိုဖဲ့ꩻတာႏ စွဲးထဲမ်သားတဖြာꩻတွမ်ႏတဲမ်းဝဲက်သုဲက်၊အနုပညာႏ ပွုံႏဆောင်ႏ ရွစ်ငဝ်းသꩻချင်ꩻသားတဖြာꩻသွူ။</p>
+        </section></a>
+
+        <section class="profile-section">
+            <h2>Skills</h2>
+            <ul id="skills-list">
+              ထွားငါ
+အုံတိဉ်ႏ
+အုံတခြင်
+အုံသာႏ
+ခွယ်ႏစေႏ
+ခွယ်ႏထွေ
+ခွယ်ႏချာ
+ရဲဉ်ꩻနမ်း
+ခံႏနွမ်ꩻ
+စဲဉ်ႏမုဲင်ꩻ
+ခေးထွေရဲဉ်ႏ
+ခေးလုဲင်းရဲဉ်ႏ
+အွဉ်ႏသဝ်ꩻ
+ထူႏတနတ်
+အွဉ်ႏလင်ꩻတနတ်
+ဖင်ꩻတနတ်
+မိုးလတနတ်
+မဲင်ꩻတနတ်
+ထင်ႏငါ ၃/၄
+မဲင်ꩻတနတ် ၅နယ်ꩻ
+မဲင်ꩻတနတ် ၇နယ်ꩻ
+မဲင်ꩻတနတ် နားရီႏနယ်ꩻ
+ဗန်းစွန်းမဲင်ꩻတနတ်
+၄-၇-၇
+ထင်ႏငါ ဗန်းစွန်းမဲင်ꩻတနတ်
+၄၅ဒီဂရီ ခွုမ်ထွူ မဲင်ꩻတနတ်
+အုံအွပ်ထင်ႏငါ ၂နယ်ꩻ၊ ချာႏတလိန်ႏနမ်း
+ယုတ်ယမ်စ၊ အုံဆွိုး
+မဲင်ꩻတနတ် အဖဲ့ꩻရန်ႏသူႏ
+အုံလင်ꩻမဲင်ꩻတနတ်
+အုံထွိုင်ႏမဲင်ꩻတနတ်
+ဗန်းစွန်းငါ ခွယ်ႏချာအုံအွပ်မိုးတနတ်
+ယုတ်ယမ်း အုံဆွိုး မတ် တာနီ
+ယုတ်ယမ်း ခွယ်ႏစေႏ တာ။
+မဲင်ꩻတနတ် ၃နယ်ꩻ
+ဖင်းတာႏရဲဉ်ꩻနမ်း
+အုံလင်ꩻတပန်း
+ဆွတ်ချာတကာ
+ထွားစေႏခံႏနွမ်ꩻ  </ul>
+        </section>
+    </div>
+
+    <script src="RYPAK
+/Profile Page/scripts.js"></script>
+    <nav>
+    <ul>
+        <li><a href="/RYPAK"> <img src="/RYPAK/Profile_image/images/Toback.svg" width="150" height="100" alt="ယီႏသဲင်ꩻချာ"></a></li>
+        <li><a href="../List_of_rypak_team_member"> <img src="/RYPAK/Profile_image/images/Tonext.svg" width="150" height="100" alt="ယီႏလွေꩻငါ"></a></li> <!-- Add this line to link to the new page -->
+       
+    </ul>
+    </nav>
+</body>
+  </html>
