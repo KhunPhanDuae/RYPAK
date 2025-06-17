@@ -1,0 +1,26 @@
+[
+  {
+    "id": "PNUG-00001458",
+    "name": "U Khun Kyaw",
+    "dob": "1989-07-16",
+    "gender": "M",
+    "district": "Taunggyi",
+    "status": "Verified"
+  },
+  {
+    "id": "PNUG-00002001",
+    "name": "Daw Nang Lar",
+    "dob": "1993-02-03",
+    "gender": "F",
+    "district": "Hsi Hseng",
+    "status": "Provisional"
+  },
+  {
+    "id": "PNUG-00003007",
+    "name": "Sai Htun Zan",
+    "dob": "1975-11-21",
+    "gender": "M",
+    "district": "Hopong",
+    "status": "Verified"
+  }
+]
