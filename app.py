@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request, send_from_directory
 import json, os, re
-# Stအတာႏ
+
 app = Flask(__name__, static_folder="static")
 
 # --- Load data once on start-up (swap with DB in prod) -----------------------
