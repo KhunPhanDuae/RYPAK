@@ -1,23 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PaʼO Citizen Registry Search</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pa'O Citizenship ID Viewer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+    }
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: none;
+      background-color: #047857;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    svg {
+      width: 100%;
+      height: auto;
+      margin-top: 1rem;
+    }
+  </style>
 </head>
-<body class="bg-slate-50 min-h-screen flex flex-col items-center p-6">
-  <h1 class="text-2xl font-semibold mb-4">🔍 PaʼO National Citizen Lookup</h1>
+<body>
+  <div class="container">
+    <h2>🔍 Pa'O Citizen ID Card</h2>
+    <input type="text" id="search" placeholder="Enter ID or Name" />
+    <button onclick="searchCitizen()">Search</button>
+    <div id="card-container"></div>
+  </div>  <script>
+    const citizens = [
+      {
+        id: "PNUG-0001",
+        name: "U Khun Kyaw",
+        dob: "1989-07-16",
+        gender: "Male",
+        ethnicity: "Pa'O",
+        district: "Taunggyi",
+        verified: true
+      },
+      {
+        id: "PNUG-0002",
+        name: "Daw Nang Htar Yee",
+        dob: "1992-03-04",
+        gender: "Female",
+        ethnicity: "Pa'O",
+        district: "Hopong",
+        verified: false
+      }
+    ];
 
-  <!-- Search box -->
-  <div class="w-full max-w-lg flex gap-2 mb-6">
-    <input id="query" type="text" placeholder="Enter ID number or name" class="flex-1 p-2 rounded border" />
-    <button id="btn-search" class="px-4 py-2 rounded bg-blue-600 text-white">Search</button>
-  </div>
+    function generateCard(citizen) {
+      return `
+      <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" style="border:1px solid #ccc; border-radius: 8px;">
+        <rect width="100%" height="100%" fill="#f9fafb" />
+        <rect x="10" y="10" width="380" height="230" rx="15" fill="#fff" stroke="#e5e7eb" stroke-width="2"/>
 
-  <!-- ID Card container -->
-  <div id="idcard-container" class="w-full max-w-xl hidden"></div>
+        <text x="20" y="40" font-size="16" font-family="Arial" fill="#111827">🪪 Pa'O National ID Card</text>
 
-  <script src="script.js"></script>
-</body>
-  </html>
+        <text x="20" y="80" font-size="14" font-family="Arial" fill="#374151">ID: ${citizen.id}</text>
+        <text x="20" y="100" font-size="14" font-family="Arial" fill="#374151">Name: ${citizen.name}</text>
+        <text x="20" y="120" font-size="14" font-family="Arial" fill="#374151">DOB: ${citizen.dob}</text>
+        <text x="20" y="140" font-size="14" font-family="Arial" fill="#374151">Gender: ${citizen.gender}</text>
+        <text x="20" y="160" font-size="14" font-family="Arial" fill="#374151">Ethnicity: ${citizen.ethnicity}</text>
+        <text x="20" y="180" font-size="14" font-family="Arial" fill="#374151">District: ${citizen.district}</text>
+
+        <text x="20" y="210" font-size="14" font-family="Arial" fill="#059669">
+          ${citizen.verified ? "✅ Verified Citizen" : "❌ Not Verified"}
+        </text>
+      </svg>
+      `;
+    }
+
+    function searchCitizen() {
+      const keyword = document.getElementById('search').value.toLowerCase();
+      const container = document.getElementById('card-container');
+      const match = citizens.find(c =>
+        c.id.toLowerCase() === keyword ||
+        c.name.toLowerCase().includes(keyword)
+      );
+
+      if (match) {
+        container.innerHTML = generateCard(match);
+      } else {
+        container.innerHTML = '<p style="color: red; margin-top: 1rem;">❌ No matching citizen found.</p>';
+      }
+    }
+  </script></body>
+</html>
