@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PaʼO Citizen Registry Search</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css">
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col items-center p-6">
+  <h1 class="text-2xl font-semibold mb-4">🔍 PaʼO National Citizen Lookup</h1>
+
+  <!-- Search box -->
+  <div class="w-full max-w-lg flex gap-2 mb-6">
+    <input id="query" type="text" placeholder="Enter ID number or name" class="flex-1 p-2 rounded border" />
+    <button id="btn-search" class="px-4 py-2 rounded bg-blue-600 text-white">Search</button>
+  </div>
+
+  <!-- ID Card container -->
+  <div id="idcard-container" class="w-full max-w-xl hidden"></div>
+
+  <script src="script.js"></script>
+</body>
+  </html>
