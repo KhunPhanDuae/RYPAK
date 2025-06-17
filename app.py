@@ -30,7 +30,7 @@ def api_search():
 
 @app.route("/")
 @app.route("/<path:path>")
-def static_proxy(path="index.html"):
+def static_proxy(path="static.html"):
     """Serve the front-end from /static folder"""
     return send_from_directory(app.static_folder, path)
 
