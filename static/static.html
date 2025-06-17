@@ -2,111 +2,168 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pa'O Citizenship ID Viewer</title>
-  <style>
+  <title>Pa'O Citizenship ID Lookup</title>  <!--
+    ==========================================================
+      🔧 CONFIGURATION SECTION – update the two constants below
+    ==========================================================
+      1. SHEETDB_URL  – SheetDB REST endpoint (include ?sheet=TabName if needed)
+      2. AUTH_TOKEN   – Bearer token if SheetDB is protected (leave "" if public)
+  -->  <script>
+    const SHEETDB_URL = "https://sheetdb.io/api/v1/unuwgl15jxmdf"; // ← REPLACE
+    const AUTH_TOKEN  = "";                                         // ← REPLACE if protected
+  </script>  <!-- Minimal inline styles (swap to Tailwind CDN if you prefer) -->  <style>
+    :root {
+      --brand: #047857;
+      --brand-alt: #059669;
+      --bg: #f3f4f6;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+    }
+    * { box-sizing: border-box; }
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
-      background: #f3f4f6;
+      background: var(--bg);
       padding: 2rem;
+      color: var(--text);
     }
     .container {
       max-width: 600px;
       margin: 0 auto;
-      background: white;
+      background: var(--card);
       padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 16px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.06);
     }
-    h2 {
+    h1 {
+      margin-top: 0;
       text-align: center;
+      color: var(--brand);
+      font-size: 1.5rem;
+    }
+    input, button {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      font-size: 1rem;
+      border-radius: 10px;
     }
     input {
-      width: 100%;
-      padding: 0.75rem;
-      margin-bottom: 1rem;
       border: 1px solid #d1d5db;
-      border-radius: 8px;
+      margin-bottom: 1rem;
     }
     button {
-      width: 100%;
-      padding: 0.75rem;
-      font-size: 1rem;
       border: none;
-      background-color: #047857;
-      color: white;
-      border-radius: 6px;
+      background: var(--brand);
+      color: #fff;
       cursor: pointer;
+      transition: background 0.2s;
     }
-    svg {
-      width: 100%;
-      height: auto;
-      margin-top: 1rem;
-    }
-  </style>
-</head>
+    button:hover { background: var(--brand-alt); }
+    .note   { color: var(--muted); font-size: 0.9rem; margin-top: 0.25rem; text-align:center; }
+    svg     { width: 100%; height: auto; margin-top: 1.5rem; }
+    .error  { color:#b91c1c; margin-top:1.25rem; text-align:center; }
+  </style></head>
 <body>
   <div class="container">
-    <h2>🔍 Pa'O Citizen ID Card</h2>
-    <input type="text" id="search" placeholder="Enter ID or Name" />
-    <button onclick="searchCitizen()">Search</button>
-    <div id="card-container"></div>
+    <h1>🔍 Pa'O Citizen ID Card</h1><input id="keyword" type="text" placeholder="Enter ID number or Name" autocomplete="off" />
+<button id="btn-search">ထိုမ်ႏထွား</button>
+<p class="note">အချက်အလက်ဖုံႏယိုနဝ်ꩻ RYPAK ကေားဖန်းဖြယ်သား အဝ်ႏထွားစဲစ်သွူ။</p>
+
+<div id="card-wrap"></div>
+
   </div>  <script>
-    const citizens = [
-      {
-        id: "PNUG-0001",
-        name: "U Khun Kyaw",
-        dob: "1989-07-16",
-        gender: "Male",
-        ethnicity: "Pa'O",
-        district: "Taunggyi",
-        verified: true
-      },
-      {
-        id: "PNUG-0002",
-        name: "Daw Nang Htar Yee",
-        dob: "1992-03-04",
-        gender: "Female",
-        ethnicity: "Pa'O",
-        district: "Hopong",
-        verified: false
-      }
-    ];
+    /* ==================================================== */
+    /*  Utility helpers                                     */
+    /* ==================================================== */
 
-    function generateCard(citizen) {
+    /** Returns a label + color object for verification status */
+    function verificationBadge(verified) {
+      const ok = verified === true || /^(true|yes|1)$/i.test(String(verified));
+      return ok ? { label: "✅ Verified Citizen", color: "#059669" } : { label: "❌ Not Verified", color: "#b91c1c" };
+    }
+
+    /** Render SVG ID card for a citizen object (without photo) */
+    function renderCard(c) {
+      const badge = verificationBadge(c.verified);
+      const qrApi = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(c.id)}`;
+
       return `
-      <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" style="border:1px solid #ccc; border-radius: 8px;">
-        <rect width="100%" height="100%" fill="#f9fafb" />
-        <rect x="10" y="10" width="380" height="230" rx="15" fill="#fff" stroke="#e5e7eb" stroke-width="2"/>
+        <svg viewBox=\"0 0 420 320\" xmlns=\"http://www.w3.org/2000/svg\" style=\"border:1.5px solid #e5e7eb;border-radius:14px;\">
+          <defs>
+            <linearGradient id=\"g\" x1=\"0\" x2=\"1\" y1=\"0\" y2=\"1\">
+              <stop offset=\"0%\" stop-color=\"var(--brand)\" />
+              <stop offset=\"100%\" stop-color=\"var(--brand-alt)\" />
+            </linearGradient>
+            <clipPath id=\"clipQR\"><rect x=\"300\" y=\"170\" width=\"100\" height=\"100\" rx=\"6\"/></clipPath>
+          </defs>
 
-        <text x="20" y="40" font-size="16" font-family="Arial" fill="#111827">🪪 Pa'O National ID Card</text>
+          <!-- background & header -->
+          <rect width=\"420\" height=\"320\" fill=\"#ffffff\" rx=\"20\"/>
+          <rect x=\"0\" y=\"0\" width=\"420\" height=\"50\" fill=\"url(#g)\"/>
+          <text x=\"210\" y=\"32\" fill=\"#fff\" font-size=\"18\" font-family=\"Arial\" font-weight=\"bold\" text-anchor=\"middle\">Pa'O National ID Card</text>
 
-        <text x="20" y="80" font-size="14" font-family="Arial" fill="#374151">ID: ${citizen.id}</text>
-        <text x="20" y="100" font-size="14" font-family="Arial" fill="#374151">Name: ${citizen.name}</text>
-        <text x="20" y="120" font-size="14" font-family="Arial" fill="#374151">DOB: ${citizen.dob}</text>
-        <text x="20" y="140" font-size="14" font-family="Arial" fill="#374151">Gender: ${citizen.gender}</text>
-        <text x="20" y="160" font-size="14" font-family="Arial" fill="#374151">Ethnicity: ${citizen.ethnicity}</text>
-        <text x="20" y="180" font-size="14" font-family="Arial" fill="#374151">District: ${citizen.district}</text>
+          <!-- QR code (acts as dynamic verifier) -->
+          <image href=\"${qrApi}\" x=\"300\" y=\"170\" width=\"100\" height=\"100\" clip-path=\"url(#clipQR)\" />
 
-        <text x="20" y="210" font-size="14" font-family="Arial" fill="#059669">
-          ${citizen.verified ? "✅ Verified Citizen" : "❌ Not Verified"}
-        </text>
-      </svg>
-      `;
+          <!-- citizen data -->
+          <g font-family=\"Arial\" fill=\"#111827\" font-size=\"16\">
+            <text x=\"30\" y=\"90\">ID : ${c.id}</text>
+            <text x=\"30\" y=\"120\">Name : ${c.name}</text>
+            <text x=\"30\" y=\"150\">DOB : ${c.dob}</text>
+            <text x=\"30\" y=\"180\">Gender : ${c.gender}</text>
+            <text x=\"30\" y=\"210\">Ethnicity : ${c.ethnicity}</text>
+            <text x=\"30\" y=\"240\">District : ${c.district}</text>
+          </g>
+
+          <!-- verification badge -->
+          <text x=\"30\" y=\"285\" font-size=\"16\" font-family=\"Arial\" fill=\"${badge.color}\">${badge.label}</text>
+        </svg>`;
     }
 
-    function searchCitizen() {
-      const keyword = document.getElementById('search').value.toLowerCase();
-      const container = document.getElementById('card-container');
-      const match = citizens.find(c =>
-        c.id.toLowerCase() === keyword ||
-        c.name.toLowerCase().includes(keyword)
-      );
+    /* ==================================================== */
+    /*  Data loading                                        */
+    /* ==================================================== */
+    let citizens = [];
 
-      if (match) {
-        container.innerHTML = generateCard(match);
-      } else {
-        container.innerHTML = '<p style="color: red; margin-top: 1rem;">❌ No matching citizen found.</p>';
+    async function loadData() {
+      try {
+        const res = await fetch(SHEETDB_URL, {
+          headers: AUTH_TOKEN ? { 'Authorization': `Bearer ${AUTH_TOKEN}` } : {}
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        citizens = await res.json();
+        console.log(`[Citizen DB] loaded ${citizens.length} records`);
+      } catch (err) {
+        console.error(err);
+        document.getElementById('card-wrap').innerHTML = `<p class="error">⚠️ Unable to load citizen database.</p>`;
       }
     }
+
+    /* ==================================================== */
+    /*  Search handler                                      */
+    /* ==================================================== */
+    function performSearch() {
+      const kw = document.getElementById('keyword').value.trim().toLowerCase();
+      const out = document.getElementById('card-wrap');
+      if (!kw) { out.innerHTML = '<p class="note">Type an ID or name to search.</p>'; return; }
+
+      const match = citizens.find(c => {
+        const idMatch = (c.id || '').toLowerCase() === kw;
+        const nameMatch = (c.name || '').toLowerCase().includes(kw);
+        return idMatch || nameMatch;
+      });
+
+      out.innerHTML = match ? renderCard(match) : '<p class="error">❌ No matching citizen found.</p>';
+    }
+
+    /* ==================================================== */
+    /*  Event bindings                                      */
+    /* ==================================================== */
+    document.getElementById('btn-search').addEventListener('click', performSearch);
+    document.getElementById('keyword').addEventListener('keypress', e => { if (e.key === 'Enter') performSearch(); });
+
+    /* boot */
+    loadData();
   </script></body>
 </html>
