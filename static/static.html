@@ -56,14 +56,16 @@ function statusBadge(c) {
 /** Render SVG ID card */      
 function renderCard(c) {      
   const badge = statusBadge(c); 
-  const payload = JSON.stringify({
-        အုဲင်ဒီ: c.id,
-         မဉ်ꩻ: c.name,
-        လေင်: c.gender,
-        ဝေင်ꩻနယ်ႏ: c.district,
-        သက်တန်ꩻလို့နီꩻ: c.expires
-      });
-  const qrApi  = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(payload)}`;
+  const qrData = `{
+"အုဲင်ဒီ" : "${c.id}",
+"မဉ်ꩻ" : "${c.name}",
+"လေင်" : "${c.gender}",
+"ဝေင်ꩻနယ်ႏ" : "${c.district}",
+"သက်တန်ꩻလို့နီꩻ" : "${c.expires}"
+}`;
+
+  const qrApi = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(qrData)}`;
+
     
   return `      
     <svg viewBox=\"0 0 420 400\" xmlns=\"http://www.w3.org/2000/svg\" style=\"border:1.5px solid #e5e7eb;border-radius:14px;\">      
