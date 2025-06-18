@@ -60,8 +60,8 @@ function renderCard(c) {
 "အုဲင်ဒီ" : "${c.id}",
 "မဉ်ꩻ" : "${c.name}",
 "အုံအဝ်ႏ" : "${c.address}",
-"ယိုခါအဝ်ႏထွာ" : "${badge.color} || ${badge.label}",
-"ဒင်ႏခါꩻပွုံႏမုဲင်နံပတ်": "${c.nrc} || "N/A"
+"ဒင်ႏခါꩻပွုံႏမုဲင်နံပတ်": "${c.nrc}",
+"ယိုခါအဝ်ႏထွာ" : "${badge.label}"
  }`;
 
   const qrApi = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(qrData)}`;
