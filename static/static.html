@@ -71,7 +71,7 @@ function renderCard(c) {
 
     
   return `      
-    <svg viewBox=\"0 0 420 900\" xmlns=\"http://www.w3.org/2000/svg\" style=\"border:1.5px solid #e5e7eb;border-radius:14px;\">      
+    <svg viewBox=\"0 0 420 500\" xmlns=\"http://www.w3.org/2000/svg\" style=\"border:1.5px solid #e5e7eb;border-radius:14px;\">      
       <defs>      
         <linearGradient id=\"g\" x1=\"0\" x2=\"1\" y1=\"0\" y2=\"1\">      
           <stop offset=\"0%\" stop-color=\"var(--brand)\" />      
@@ -100,12 +100,12 @@ function renderCard(c) {
         <text x=\"30\" y=\"300\">ခွုမ်စံႏထာꩻမာꩻ : ${c.position}</text> 
         <text x=\"30\" y=\"330\">သွုပ်ထေ့တာႏ : ${c.contact}</text>  
         <text x=\"30\" y=\"360\">District : ${c.district}</text>      
-        <text x=\"30\" y=\"370\">Issued  : ${c.issued || "–"}</text>      
-        <text x=\"30\" y=\"390\">Expires : ${c.expires || "–"}</text>      
+        <text x=\"30\" y=\"390\">Issued  : ${c.issued || "–"}</text>      
+        <text x=\"30\" y=\"420\">Expires : ${c.expires || "–"}</text>      
       </g>      
     
       <!-- status badge -->      
-      <text x=\"30\" y=\"335\" font-size=\"16\" font-family=\"Arial\" fill=\"${badge.color}\">${badge.label}</text>      
+      <text x=\"30\" y=\"435\" font-size=\"16\" font-family=\"Arial\" fill=\"${badge.color}\">${badge.label}</text>      
     </svg>`;      
 }      
     
