@@ -59,12 +59,9 @@ function renderCard(c) {
   const qrData = `{
 "အုဲင်ဒီ" : "${c.id}",
 "မဉ်ꩻ" : "${c.name}",
-"လေင်" : "${c.gender}",
-"အုံအဝ်ႏလိတ်ထူ": "${c.address} || "N/A",
-  "ဒင်ႏခါꩻပွုံႏမုဲင်နံပတ်": "${c.nrc} || "N/A",
+"ဒင်ႏခါꩻပွုံႏမုဲင်နံပတ်": "${c.nrc} || "N/A",
   "ခွုမ်စံႏထာꩻမာꩻ": "${c.position} || "N/A",
-  "သွုပ်ထေ့တာႏ": "${c.contact} || "N/A",
-"သက်တန်ꩻလို့နီꩻ" : "${c.expires}"
+  "သွုပ်ထေ့တာႏ": "${c.contact} || "N/A"
 }`;
 
   const qrApi = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(qrData)}`;
