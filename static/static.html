@@ -56,7 +56,13 @@ function statusBadge(c) {
 /** Render SVG ID card */      
 function renderCard(c) {      
   const badge = statusBadge(c); 
-  const payload = JSON.stringify( c.id,c.name,c.gender,c.district,c.expires );
+  const payload = JSON.stringify({
+        အုဲင်ဒီ: c.id,
+         မဉ်ꩻ: c.name,
+        လေင်: c.gender,
+        ဝေင်ꩻနယ်ႏ: c.district,
+        သက်တန်ꩻလို့နီꩻ: c.expires
+      });
   const qrApi  = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(payload)}`;
     
   return `      
