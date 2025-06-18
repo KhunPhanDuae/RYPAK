@@ -71,7 +71,7 @@ function renderCard(c) {
           <stop offset=\"0%\" stop-color=\"var(--brand)\" />      
           <stop offset=\"100%\" stop-color=\"var(--brand-alt)\" />      
         </linearGradient>      
-        <clipPath id=\"clipQR\"><rect x=\"300\" y=\"330\" width=\"150\" height=\"150\" rx=\"6\"/></clipPath>      
+        <clipPath id=\"clipQR\"><rect x=\"270\" y=\"330\" width=\"150\" height=\"150\" rx=\"6\"/></clipPath>      
       </defs>      
     
       <!-- background & header -->      
@@ -80,7 +80,7 @@ function renderCard(c) {
       <text x=\"210\" y=\"32\" fill=\"#fff\" font-size=\"18\" font-family=\"Arial\" font-weight=\"bold\" text-anchor=\"middle\">Pa'O National ID Card</text>      
     
       <!-- QR code (dynamic verifier) -->      
-      <image href=\"${qrApi}\" x=\"300\" y=\"330\" width=\"150\" height=\"150\" clip-path=\"url(#clipQR)\" />      
+      <image href=\"${qrApi}\" x=\"270\" y=\"330\" width=\"150\" height=\"150\" clip-path=\"url(#clipQR)\" />      
     
       <!-- citizen data -->      
       <g font-family=\"Arial\" fill=\"#111827\" font-size=\"16\">      
