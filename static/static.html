@@ -60,10 +60,13 @@ function renderCard(c) {
 "အုဲင်ဒီ" : "${c.id}",
 "မဉ်ꩻ" : "${c.name}",
 "လေင်" : "${c.gender}",
-"ဝေင်ꩻနယ်ႏ" : "${c.district}",
+"အုံအဝ်ႏလိတ်ထူ": "${c.address} || "N/A",
+  "ဒင်ႏခါꩻပွုံႏမုဲင်နံပတ်": "${c.nrc} || "N/A",
+  "ခွုမ်စံႏထာꩻမာꩻ": "${c.position} || "N/A",
+  "သွုပ်ထေ့တာႏ": "${c.contact} || "N/A",
 "သက်တန်ꩻလို့နီꩻ" : "${c.expires}"
 }`;
-
+const qrApi = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrText)}`;
   const qrApi = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(qrData)}`;
 
     
@@ -91,10 +94,14 @@ function renderCard(c) {
         <text x=\"30\" y=\"120\">Name : ${c.name}</text>      
         <text x=\"30\" y=\"150\">DOB : ${c.dob}</text>      
         <text x=\"30\" y=\"180\">Gender : ${c.gender}</text>      
-        <text x=\"30\" y=\"210\">Ethnicity : ${c.ethnicity}</text>      
-        <text x=\"30\" y=\"240\">District : ${c.district}</text>      
-        <text x=\"30\" y=\"270\">Issued  : ${c.issued || "–"}</text>      
-        <text x=\"30\" y=\"300\">Expires : ${c.expires || "–"}</text>      
+        <text x=\"30\" y=\"210\">Ethnicity : ${c.ethnicity}</text>  
+        <text x=\"30\" y=\"240\">အုံအဝ်ႏ : ${c.address}</text>
+        <text x=\"30\" y=\"270\">ဒင်ႏပွုံႏမုဲင်နံပတ် : ${c.nrc}</text> 
+        <text x=\"30\" y=\"300\">ခွုမ်စံႏထာꩻမာꩻ : ${c.position}</text> 
+        <text x=\"30\" y=\"330\">သွုပ်ထေ့တာႏ : ${c.contact}</text>  
+        <text x=\"30\" y=\"360\">District : ${c.district}</text>      
+        <text x=\"30\" y=\"390\">Issued  : ${c.issued || "–"}</text>      
+        <text x=\"30\" y=\"420\">Expires : ${c.expires || "–"}</text>      
       </g>      
     
       <!-- status badge -->      
