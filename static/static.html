@@ -55,8 +55,9 @@ function statusBadge(c) {
     
 /** Render SVG ID card */      
 function renderCard(c) {      
-  const badge = statusBadge(c);      
-  const qrApi = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(c.id)}`;      
+  const badge = statusBadge(c); 
+  const payload = JSON.stringify({ id: c.id, name: c.name, expires: c.expires });
+  const qrApi  = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(payload)}`;
     
   return `      
     <svg viewBox=\"0 0 420 400\" xmlns=\"http://www.w3.org/2000/svg\" style=\"border:1.5px solid #e5e7eb;border-radius:14px;\">      
